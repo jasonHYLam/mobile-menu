@@ -19,5 +19,15 @@ export default function mobileMenu() {
     createElement('div', 'Travel', menuContainer, 'menu-option');
     createElement('div', 'Capital', menuContainer, 'menu-option');
     createElement('div', 'More', menuContainer, 'menu-option', 'more');
+
+    const containerElement = document.querySelector(".container");
+    console.log(containerElement)
+
+    function onresize(el) {
+        console.log('width', el[0].contentRect.width);
+    }
+    const myObserver = new ResizeObserver(onresize);
+    myObserver.observe(containerElement);
+
     
 }
