@@ -11,13 +11,13 @@ export default function mobileMenu() {
     }
 
     const menuContainer = createElement('div', '', body, 'container');
-    createElement('div', 'News', menuContainer, 'menuOption');
-    createElement('div', 'Sport', menuContainer, 'menuOption');
-    createElement('div', 'Weather', menuContainer, 'menuOption');
-    createElement('div', 'Shop', menuContainer, 'menuOption');
-    createElement('div', 'Earth', menuContainer, 'menuOption');
-    createElement('div', 'Travel', menuContainer, 'menuOption');
-    createElement('div', 'Capital', menuContainer, 'menuOption');
-    createElement('div', 'More', menuContainer, 'menuOption', 'more');
+    createElement('div', 'News', menuContainer, 'menu-option');
+    createElement('div', 'Sport', menuContainer, 'menu-option');
+    createElement('div', 'Weather', menuContainer, 'menu-option');
+    createElement('div', 'Shop', menuContainer, 'menu-option');
+    createElement('div', 'Earth', menuContainer, 'menu-option');
+    createElement('div', 'Travel', menuContainer, 'menu-option');
+    createElement('div', 'Capital', menuContainer, 'menu-option');
+    createElement('div', 'More', menuContainer, 'menu-option', 'more');
     
 }
