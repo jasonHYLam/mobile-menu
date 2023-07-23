@@ -33,9 +33,10 @@ export default function mobileMenu() {
 
         console.log('width', el[0].contentRect.width);
         if (width < 500) {
-
-            console.log('hah')
             lastMenuOption.classList.add('hidden');
+        } else if (width >= 500) {
+            lastMenuOption.classList.remove('hidden');
+
         }
     }
     const myObserver = new ResizeObserver(onresize);
