@@ -18,22 +18,24 @@ export default function mobileMenu() {
     createElement('div', 'Earth', menuContainer, 'menu-option');
     createElement('div', 'Travel', menuContainer, 'menu-option');
     createElement('div', 'Capital', menuContainer, 'menu-option');
-    createElement('div', 'More', menuContainer, 'menu-option', 'more');
+    createElement('div', 'More', menuContainer, 'more');
 
     const containerElement = document.querySelector(".container");
-    console.log(containerElement.lastChild);
-    console.log(containerElement[1]);
+
+    const menuOptions = document.querySelectorAll(".menu-option");
+    console.log(menuOptions)
+    let lastMenuOption = menuOptions[menuOptions.length -1];
 
 
     console.log(containerElement[-1]);
     function onresize(el) {
         let width = el[0].contentRect.width;
 
-        console.log(typeof(width));
         console.log('width', el[0].contentRect.width);
         if (width < 500) {
 
             console.log('hah')
+            lastMenuOption.classList.add('hidden');
         }
     }
     const myObserver = new ResizeObserver(onresize);
