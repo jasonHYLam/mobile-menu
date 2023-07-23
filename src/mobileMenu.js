@@ -21,10 +21,20 @@ export default function mobileMenu() {
     createElement('div', 'More', menuContainer, 'menu-option', 'more');
 
     const containerElement = document.querySelector(".container");
-    console.log(containerElement)
+    console.log(containerElement.lastChild);
+    console.log(containerElement[1]);
 
+
+    console.log(containerElement[-1]);
     function onresize(el) {
+        let width = el[0].contentRect.width;
+
+        console.log(typeof(width));
         console.log('width', el[0].contentRect.width);
+        if (width < 500) {
+
+            console.log('hah')
+        }
     }
     const myObserver = new ResizeObserver(onresize);
     myObserver.observe(containerElement);
