@@ -51,7 +51,7 @@ export default function mobileMenu() {
     }
 
     function getLastMenuOption() {
-        return getMenuOptionContainer.lastChild;
+        return getMenuOptionContainer().lastChild;
     }
 
     function addOptionClass() {
@@ -63,6 +63,8 @@ export default function mobileMenu() {
     }
 
     function addToRemovedArray() {
+        console.log(getContainerForRemoved());
+        console.log(getLastMenuOption());
         getContainerForRemoved().appendChild(getLastMenuOption());
     }
 
@@ -77,6 +79,8 @@ export default function mobileMenu() {
     }
 
     function onresize(el) {
+
+        const initialWidth = el[0].contentRect.width;
         let width = el[0].contentRect.width;
 
         console.log('width', el[0].contentRect.width);
