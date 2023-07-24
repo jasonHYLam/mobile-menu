@@ -73,18 +73,17 @@ export default function mobileMenu() {
     }
 
     function isRemovedArrayEmpty() {
-        console.log(getContainerForRemoved());
-        console.log(getContainerForRemoved().lastChild);
         return (!getContainerForRemoved().lastChild);
     }
 
     function onresize(el) {
 
-        const initialWidth = el[0].contentRect.width;
+        const widthOfMenuOption = 135;
+        // const initialWidth = 1000;
         let width = el[0].contentRect.width;
 
         console.log('width', el[0].contentRect.width);
-        if (width < 500) {
+        if (width < (widthOfMenuOption * 0.5)) {
             // get reference to last element of menu options, and remove it from this
             console.log('too small');
             addToRemovedArray(getLastMenuOption());
@@ -92,8 +91,11 @@ export default function mobileMenu() {
             console.log(document.querySelector('.menu-option-container'));
             console.log(document.querySelector('.container-for-removed'));
 
+            changeObserver(getLastMenuOption())
+            console.log(getLastMenuOption());
+
             // lastMenuOption.classList.add('hidden');
-        } else if (width >= 500) {
+        } else if (width >= widthOfMenuOption * 1.5 ) {
             console.log('too large');
             // get reference to last element of removed array, and add it to previous
             // lastMenuOption.classList.remove('hidden');
@@ -106,6 +108,10 @@ export default function mobileMenu() {
 
         }
     }
-    const myObserver = new ResizeObserver(onresize);
-    myObserver.observe(getMenuOptionContainer());
+    // const myObserver = new ResizeObserver(onresize);
+
+    // function changeObserver(newElement) {
+    //     myObserver.observe(newElement)
+    // }
+    // myObserver.observe(getLastMenuOption());
 }
