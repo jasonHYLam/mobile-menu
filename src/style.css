@@ -20,7 +20,7 @@ body {
 }
 
 .more.grow {
-    display: flex;
+    flex: 1;
 
 }
 

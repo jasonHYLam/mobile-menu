@@ -34,6 +34,10 @@ export default function mobileMenu() {
         return document.querySelector("body");
     }
 
+    function getMoreElement() {
+        return document.querySelector(".more");
+    }
+
     function getBar() {
         return document.querySelector(".container");
     }
@@ -85,6 +89,10 @@ export default function mobileMenu() {
         document.querySelector(".more").classList.remove("grow");
     }
 
+    function hideLastMenuOption() {
+        getLastMenuOption.classList.add('hidden');
+    }
+
     function onresize(el) {
         let width = el[0].contentRect.width;
         console.log('width', width)
@@ -128,4 +136,18 @@ export default function mobileMenu() {
     }
     const myObserver = new ResizeObserver(onresize);
     myObserver.observe(getBody());
+
+    const moreObserver  = new ResizeObserver((el) => {
+        const minWidth = 80;
+        let lastMenuOption = document.querySelector(".menu-option"); // not sure if this works
+        let lastVisibleMenuOption = document.querySelector(".menu-option:not(.hidden):last-child"); // not sure if this works
+        console.log(el);
+        console.log(lastMenuOption);
+        console.log(lastVisibleMenuOption);
+
+
+
+    })
+    console.log(getMoreElement());
+    moreObserver.observe(getMoreElement());
 }
