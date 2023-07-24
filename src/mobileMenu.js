@@ -11,13 +11,14 @@ export default function mobileMenu() {
     }
 
     const menuContainer = createElement('div', '', body, 'container');
-    createElement('div', 'News', menuContainer, 'menu-option');
-    createElement('div', 'Sport', menuContainer, 'menu-option');
-    createElement('div', 'Weather', menuContainer, 'menu-option');
-    createElement('div', 'Shop', menuContainer, 'menu-option');
-    createElement('div', 'Earth', menuContainer, 'menu-option');
-    createElement('div', 'Travel', menuContainer, 'menu-option');
-    createElement('div', 'Capital', menuContainer, 'menu-option');
+    const menuOptionContainer = createElement('div', '', menuContainer, 'menu-container');
+    createElement('div', 'News', menuOptionContainer, 'menu-option');
+    createElement('div', 'Sport', menuOptionContainer, 'menu-option');
+    createElement('div', 'Weather', menuOptionContainer, 'menu-option');
+    createElement('div', 'Shop', menuOptionContainer, 'menu-option');
+    createElement('div', 'Earth', menuOptionContainer, 'menu-option');
+    createElement('div', 'Travel', menuOptionContainer, 'menu-option');
+    createElement('div', 'Capital', menuOptionContainer, 'menu-option');
     createElement('div', 'More', menuContainer, 'more');
 
     const containerElement = document.querySelector(".container");
@@ -26,6 +27,25 @@ export default function mobileMenu() {
     console.log(menuOptions)
     let lastMenuOption = menuOptions[menuOptions.length -1];
 
+    function addOptionClass(el) {
+        el.classList.add('menu-option')
+
+    }
+
+    function removeOptionClass(el) {
+        el.classList.remove('menu-option')
+
+    }
+
+    function addToRemovedArray(el) {
+        el.classList.add('removed')
+
+    }
+
+    function removeFromRemovedArray(el) {
+        el.classList.remove('removed')
+
+    }
 
     console.log(containerElement[-1]);
     function onresize(el) {
