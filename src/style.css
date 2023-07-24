@@ -6,7 +6,7 @@ body {
 .container {
     display: flex;
     border: solid black 1px;
-
+    width: min(750px, 100%);
 }
 
 .menu-option-container {
@@ -19,8 +19,9 @@ body {
     padding: 10px 25px 10px;
 }
 
-.more.grow {
+.more {
     flex: 1;
+    text-align: right;
 
 }
 
@@ -31,4 +32,25 @@ body {
 
 .menu-option.hidden {
     display: none;
+}
+
+/* testing  */
+#parent {
+    display: flex;
+    border: solid black 1px;
+    width: min(600px, 100%);
+}
+
+#container {
+    display: flex;
+    border: solid red 1px;
+}
+
+.little {
+    padding: 10px 25px 10px;
+}
+
+.expand {
+    flex: 1;
+    text-align: end;
 }

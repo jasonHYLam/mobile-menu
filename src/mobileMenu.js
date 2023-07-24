@@ -81,29 +81,31 @@ export default function mobileMenu() {
         return (!getContainerForRemoved().lastChild);
     }
 
-    function growMoreElement() {
-        document.querySelector(".more").classList.add("grow");
-    }
-
-    function stopGrowMoreElement() {
-        document.querySelector(".more").classList.remove("grow");
-    }
-
     function hideLastMenuOption() {
         getLastMenuOption.classList.add('hidden');
     }
 
+    const moreObserver  = new ResizeObserver((el) => {
+        const minWidth = 80;
+        let lastMenuOption = document.querySelector(".menu-option"); // not sure if this works
+        let lastVisibleMenuOption = document.querySelector(".menu-option:not(.hidden):last-child"); // not sure if this works
+        lastVisibleMenuOption.classList.add('hidden');
+        console.log(el[0].contentRect.width);
+        console.log(lastVisibleMenuOption);
+    })
+
+    // moreObserver.observe(getMoreElement());
     function onresize(el) {
         let width = el[0].contentRect.width;
         console.log('width', width)
 
         if (width < 700) {
             console.log('width', width)
-            growMoreElement();
             console.log('start growing');
+            moreObserver.observe(getMoreElement());
+
         } else if (width >= 700) {
             console.log('width', width)
-            stopGrowMoreElement();
             console.log('stop growing');
         }
 
@@ -137,17 +139,4 @@ export default function mobileMenu() {
     const myObserver = new ResizeObserver(onresize);
     myObserver.observe(getBody());
 
-    const moreObserver  = new ResizeObserver((el) => {
-        const minWidth = 80;
-        let lastMenuOption = document.querySelector(".menu-option"); // not sure if this works
-        let lastVisibleMenuOption = document.querySelector(".menu-option:not(.hidden):last-child"); // not sure if this works
-        console.log(el);
-        console.log(lastMenuOption);
-        console.log(lastVisibleMenuOption);
-
-
-
-    })
-    console.log(getMoreElement());
-    moreObserver.observe(getMoreElement());
 }
