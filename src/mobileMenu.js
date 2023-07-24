@@ -25,16 +25,17 @@ export default function mobileMenu() {
     }
 
     createMenuContainer();
-    console.log(document.querySelector(".menu-option-container"));
 
 
     // if length reaches certain point
     // if nodelist length changes
 
-    function checkToChange() {
-        const menuOptionContainer = document.querySelector(".menu-option-container");
-        const lastOption = menuOptionContainer.lastChild;
+    function getBody() {
+        return document.querySelector("body");
+    }
 
+    function getBar() {
+        return document.querySelector(".container");
     }
 
     function getContainerForRemoved() {
@@ -76,42 +77,55 @@ export default function mobileMenu() {
         return (!getContainerForRemoved().lastChild);
     }
 
-    function onresize(el) {
-
-        const widthOfMenuOption = 135;
-        // const initialWidth = 1000;
-        let width = el[0].contentRect.width;
-
-        console.log('width', el[0].contentRect.width);
-        if (width < (widthOfMenuOption * 0.5)) {
-            // get reference to last element of menu options, and remove it from this
-            console.log('too small');
-            addToRemovedArray(getLastMenuOption());
-            removeOptionClass(getLastMenuOption());
-            console.log(document.querySelector('.menu-option-container'));
-            console.log(document.querySelector('.container-for-removed'));
-
-            changeObserver(getLastMenuOption())
-            console.log(getLastMenuOption());
-
-            // lastMenuOption.classList.add('hidden');
-        } else if (width >= widthOfMenuOption * 1.5 ) {
-            console.log('too large');
-            // get reference to last element of removed array, and add it to previous
-            // lastMenuOption.classList.remove('hidden');
-            if (isRemovedArrayEmpty());
-            else {
-                console.log('this happens');
-                addOptionClass(getLastRemoved());
-                removeFromRemovedArray(getLastRemoved());
-            }
-
-        }
+    function growMoreElement() {
+        document.querySelector(".more").classList.add("grow");
     }
-    // const myObserver = new ResizeObserver(onresize);
 
-    // function changeObserver(newElement) {
-    //     myObserver.observe(newElement)
-    // }
-    // myObserver.observe(getLastMenuOption());
+    function stopGrowMoreElement() {
+        document.querySelector(".more").classList.remove("grow");
+    }
+
+    function onresize(el) {
+        let width = el[0].contentRect.width;
+        console.log('width', width)
+
+        if (width < 700) {
+            console.log('width', width)
+            growMoreElement();
+            console.log('start growing');
+        } else if (width >= 700) {
+            console.log('width', width)
+            stopGrowMoreElement();
+            console.log('stop growing');
+        }
+
+        // TODO; look at logic
+        // console.log('width', el[0].contentRect.width);
+        // if (width < (widthOfMenuOption * 0.5)) {
+        //     // get reference to last element of menu options, and remove it from this
+        //     console.log('too small');
+        //     addToRemovedArray(getLastMenuOption());
+        //     removeOptionClass(getLastMenuOption());
+        //     console.log(document.querySelector('.menu-option-container'));
+        //     console.log(document.querySelector('.container-for-removed'));
+
+        //     changeObserver(getLastMenuOption())
+        //     console.log(getLastMenuOption());
+
+        //     // lastMenuOption.classList.add('hidden');
+        // } else if (width >= widthOfMenuOption * 1.5 ) {
+        //     console.log('too large');
+        //     // get reference to last element of removed array, and add it to previous
+        //     // lastMenuOption.classList.remove('hidden');
+        //     if (isRemovedArrayEmpty());
+        //     else {
+        //         console.log('this happens');
+        //         addOptionClass(getLastRemoved());
+        //         removeFromRemovedArray(getLastRemoved());
+        //     }
+
+        // }
+    }
+    const myObserver = new ResizeObserver(onresize);
+    myObserver.observe(getBody());
 }

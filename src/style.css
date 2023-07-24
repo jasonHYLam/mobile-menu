@@ -5,21 +5,23 @@ body {
 }
 .container {
     display: flex;
-    /* width: 90%; */
-    /* width: clamp(350px, 95%, 1000px); */
     border: solid black 1px;
 
 }
 
 .menu-option-container {
     display: flex;
-    /* width: clamp(350px, 95%, 1000px); */
     border: solid red 1px;
 }
 
 
 .menu-option, .more {
     padding: 10px 25px 10px;
+}
+
+.more.grow {
+    display: flex;
+
 }
 
 .menu-option {
