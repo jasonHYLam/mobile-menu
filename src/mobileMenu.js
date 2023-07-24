@@ -10,18 +10,36 @@ export default function mobileMenu() {
         return newElement;
     }
 
-    const menuContainer = createElement('div', '', body, 'container');
-    const menuOptionContainer = createElement('div', '', menuContainer, 'menu-option-container');
-    createElement('div', 'News', menuOptionContainer, 'menu-option');
-    createElement('div', 'Sport', menuOptionContainer, 'menu-option');
-    createElement('div', 'Weather', menuOptionContainer, 'menu-option');
-    createElement('div', 'Shop', menuOptionContainer, 'menu-option');
-    createElement('div', 'Earth', menuOptionContainer, 'menu-option');
-    createElement('div', 'Travel', menuOptionContainer, 'menu-option');
-    createElement('div', 'Capital', menuOptionContainer, 'menu-option');
-    createElement('div', 'More', menuContainer, 'more');
+    function createMenuContainer() {
+        const menuContainer = createElement('div', '', body, 'container');
+        const menuOptionContainer = createElement('div', '', menuContainer, 'menu-option-container');
+        const removed = createElement('div', '', menuContainer, 'container-for-removed', 'hidden');
+        createElement('div', 'News', menuOptionContainer, 'menu-option');
+        createElement('div', 'Sport', menuOptionContainer, 'menu-option');
+        createElement('div', 'Weather', menuOptionContainer, 'menu-option');
+        createElement('div', 'Shop', menuOptionContainer, 'menu-option');
+        createElement('div', 'Earth', menuOptionContainer, 'menu-option');
+        createElement('div', 'Travel', menuOptionContainer, 'menu-option');
+        createElement('div', 'Capital', menuOptionContainer, 'menu-option');
+        createElement('div', 'More', menuContainer, 'more');
+    }
 
-    const containerElement = document.querySelector(".container");
+    createMenuContainer();
+
+
+    // if length reaches certain point
+    // if nodelist length changes
+
+    function checkToChange() {
+        const menuOptionContainer = document.querySelector(".menu-option-container");
+        const lastOption = menuOptionContainer.lastChild;
+
+    }
+
+    function getLastRemoved() {
+        const removedElements = document.querySelector(".removed")
+    }
+    const menuOptionContainer = document.querySelector(".menu-option-container");
 
     const menuOptions = document.querySelectorAll(".menu-option");
     console.log(menuOptions)
@@ -47,20 +65,23 @@ export default function mobileMenu() {
 
     }
 
-    console.log(containerElement[-1]);
+    console.log(menuOptionContainer[-1]);
     function onresize(el) {
         let width = el[0].contentRect.width;
 
         console.log('width', el[0].contentRect.width);
         if (width < 500) {
+            // get reference to last element of menu options, and remove it from this
+
             lastMenuOption.classList.add('hidden');
         } else if (width >= 500) {
+            // get reference to last element of removed array, and add it to previous
             lastMenuOption.classList.remove('hidden');
 
         }
     }
     const myObserver = new ResizeObserver(onresize);
-    myObserver.observe(containerElement);
+    myObserver.observe(menuOptionContainer);
 
     
 }
