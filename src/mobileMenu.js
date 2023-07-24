@@ -25,6 +25,7 @@ export default function mobileMenu() {
     }
 
     createMenuContainer();
+    console.log(document.querySelector(".menu-option-container"));
 
 
     // if length reaches certain point
@@ -36,52 +37,71 @@ export default function mobileMenu() {
 
     }
 
+    function getContainerForRemoved() {
+        return document.querySelector(".container-for-removed")
+
+    }
+
     function getLastRemoved() {
-        const removedElements = document.querySelector(".removed")
-    }
-    const menuOptionContainer = document.querySelector(".menu-option-container");
-
-    const menuOptions = document.querySelectorAll(".menu-option");
-    console.log(menuOptions)
-    let lastMenuOption = menuOptions[menuOptions.length -1];
-
-    function addOptionClass(el) {
-        el.classList.add('menu-option')
-
+        return getContainerForRemoved.lastChild;
     }
 
-    function removeOptionClass(el) {
-        el.classList.remove('menu-option')
-
+    function getMenuOptionContainer() {
+        return document.querySelector(".menu-option-container");
     }
 
-    function addToRemovedArray(el) {
-        el.classList.add('removed')
-
+    function getLastMenuOption() {
+        return getMenuOptionContainer.lastChild;
     }
 
-    function removeFromRemovedArray(el) {
-        el.classList.remove('removed')
-
+    function addOptionClass() {
+        getMenuOptionContainer().appendChild(getLastRemoved())
     }
 
-    console.log(menuOptionContainer[-1]);
+    function removeOptionClass() {
+        getMenuOptionContainer().removeChild(getMenuOptionContainer().lastChild)
+    }
+
+    function addToRemovedArray() {
+        getContainerForRemoved().appendChild(getLastMenuOption());
+    }
+
+    function removeFromRemovedArray() {
+        getContainerForRemoved().removeChild(getContainerForRemoved().lastChild)
+    }
+
+    function isRemovedArrayEmpty() {
+        console.log(getContainerForRemoved());
+        console.log(getContainerForRemoved().lastChild);
+        return (!getContainerForRemoved().lastChild);
+    }
+
     function onresize(el) {
         let width = el[0].contentRect.width;
 
         console.log('width', el[0].contentRect.width);
         if (width < 500) {
             // get reference to last element of menu options, and remove it from this
+            console.log('too small');
+            addToRemovedArray(getLastMenuOption());
+            removeOptionClass(getLastMenuOption());
+            console.log(document.querySelector('.menu-option-container'));
+            console.log(document.querySelector('.container-for-removed'));
 
-            lastMenuOption.classList.add('hidden');
+            // lastMenuOption.classList.add('hidden');
         } else if (width >= 500) {
+            console.log('too large');
             // get reference to last element of removed array, and add it to previous
-            lastMenuOption.classList.remove('hidden');
+            // lastMenuOption.classList.remove('hidden');
+            if (isRemovedArrayEmpty());
+            else {
+                console.log('this happens');
+                addOptionClass(getLastRemoved());
+                removeFromRemovedArray(getLastRemoved());
+            }
 
         }
     }
     const myObserver = new ResizeObserver(onresize);
-    myObserver.observe(menuOptionContainer);
-
-    
+    myObserver.observe(getMenuOptionContainer());
 }
