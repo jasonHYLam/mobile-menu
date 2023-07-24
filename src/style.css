@@ -4,12 +4,19 @@
     border: solid black 1px;
 }
 
+.menu-option-container {
+    display: flex;
+    width: clamp(350px, 95%, 1000px);
+    border: solid red 1px;
+}
+
+
 .menu-option, .more {
-    flex: 1;
     padding: 10px 5px 10px;
+}
 
-    /* width: min(50%, 50px); */
-
+.menu-option {
+    flex: 1;
 }
 
 

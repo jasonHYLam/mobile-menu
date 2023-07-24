@@ -11,7 +11,7 @@ export default function mobileMenu() {
     }
 
     const menuContainer = createElement('div', '', body, 'container');
-    const menuOptionContainer = createElement('div', '', menuContainer, 'menu-container');
+    const menuOptionContainer = createElement('div', '', menuContainer, 'menu-option-container');
     createElement('div', 'News', menuOptionContainer, 'menu-option');
     createElement('div', 'Sport', menuOptionContainer, 'menu-option');
     createElement('div', 'Weather', menuOptionContainer, 'menu-option');
