@@ -31,6 +31,7 @@ export default function mobileMenu() {
         return document.querySelector(".more");
     }
 
+    // Track changes to 'more' element's width
     const moreObserver  = new ResizeObserver((el) => {
         const MIN_WIDTH = 35;
         const MAX_WIDTH = 150;
@@ -41,9 +42,14 @@ export default function mobileMenu() {
         
         if (el[0].contentRect.width < MIN_WIDTH) {
             lastVisibleMenuOption.classList.add('hidden');
-        } else if (el[0].contentRect.width > MAX_WIDTH) { // TODO: make this work
+        } else if (el[0].contentRect.width > MAX_WIDTH) {
             firstHiddenOption.classList.remove('hidden');
         }
     })
     moreObserver.observe(getMoreElement());
+
+    // Detect hover over the 'more' element.
+    getMoreElement().addEventListener('mouseover', (e) => {
+        console.log(e.target);
+    })
 }
