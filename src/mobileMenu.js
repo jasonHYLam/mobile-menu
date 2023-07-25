@@ -38,53 +38,6 @@ export default function mobileMenu() {
         return document.querySelector(".more");
     }
 
-    function getBar() {
-        return document.querySelector(".container");
-    }
-
-    function getContainerForRemoved() {
-        return document.querySelector(".container-for-removed")
-
-    }
-
-    function getLastRemoved() {
-        return getContainerForRemoved.lastChild;
-    }
-
-    function getMenuOptionContainer() {
-        return document.querySelector(".menu-option-container");
-    }
-
-    function getLastMenuOption() {
-        return getMenuOptionContainer().lastChild;
-    }
-
-    function addOptionClass() {
-        getMenuOptionContainer().appendChild(getLastRemoved())
-    }
-
-    function removeOptionClass() {
-        getMenuOptionContainer().removeChild(getMenuOptionContainer().lastChild)
-    }
-
-    function addToRemovedArray() {
-        console.log(getContainerForRemoved());
-        console.log(getLastMenuOption());
-        getContainerForRemoved().appendChild(getLastMenuOption());
-    }
-
-    function removeFromRemovedArray() {
-        getContainerForRemoved().removeChild(getContainerForRemoved().lastChild)
-    }
-
-    function isRemovedArrayEmpty() {
-        return (!getContainerForRemoved().lastChild);
-    }
-
-    function hideLastMenuOption() {
-        getLastMenuOption.classList.add('hidden');
-    }
-
     const moreObserver  = new ResizeObserver((el) => {
         const MIN_WIDTH = 35;
         const MAX_WIDTH = 200;
@@ -98,7 +51,6 @@ export default function mobileMenu() {
             lastVisibleMenuOption.classList.add('hidden');
         } else if (el[0].contentRect.width > MAX_WIDTH) {
             firstHiddenOption.classList.remove('hidden');
-
         }
     })
 
