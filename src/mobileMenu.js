@@ -86,13 +86,19 @@ export default function mobileMenu() {
     }
 
     const moreObserver  = new ResizeObserver((el) => {
-        const MINWIDTH = 35;
+        const MIN_WIDTH = 35;
+        const MAX_WIDTH = 200;
         let visibleMenuOptions = document.querySelectorAll(".menu-option:not(.hidden)");
         let lastVisibleMenuOption = visibleMenuOptions[visibleMenuOptions.length -1];
+
+        let firstHiddenOption = document.querySelector(".menu-option.hidden");
         console.log(lastVisibleMenuOption);
         
-        if (el[0].contentRect.width < MINWIDTH) {
+        if (el[0].contentRect.width < MIN_WIDTH) {
             lastVisibleMenuOption.classList.add('hidden');
+        } else if (el[0].contentRect.width > MAX_WIDTH) {
+            firstHiddenOption.classList.remove('hidden');
+
         }
     })
 
