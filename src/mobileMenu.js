@@ -87,17 +87,12 @@ export default function mobileMenu() {
 
     const moreObserver  = new ResizeObserver((el) => {
         const MINWIDTH = 35;
-        // let lastVisibleMenuOption = document.querySelector(".menu-option:not(.hidden):last-child");
-        let lastVisibleMenuOption = document.querySelector(".menu-option:not(.hidden)");
-        console.log('this happens all the time huh');
+        let visibleMenuOptions = document.querySelectorAll(".menu-option:not(.hidden)");
+        let lastVisibleMenuOption = visibleMenuOptions[visibleMenuOptions.length -1];
         console.log(lastVisibleMenuOption);
         
         if (el[0].contentRect.width < MINWIDTH) {
-            console.log('ha im growing mad')
             lastVisibleMenuOption.classList.add('hidden');
-            // lastVisibleMenuOption = document.querySelector(".menu-option:not(.hidden):last-child");
-            // lastVisibleMenuOption = document.querySelector(".menu-option:not(.hidden)");
-            // console.log(lastVisibleMenuOption);
         }
     })
 
@@ -118,7 +113,4 @@ export default function mobileMenu() {
     }
     const myObserver = new ResizeObserver(onresize);
     myObserver.observe(getBody());
-
-
-
 }
