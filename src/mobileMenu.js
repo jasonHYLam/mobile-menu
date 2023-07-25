@@ -40,6 +40,10 @@ export default function mobileMenu() {
         getDropDownContainer().appendChild(option)
     }
 
+    function removeLastOptionToDropDownContainer() {
+        getDropDownContainer().removeChild(getDropDownContainer().lastChild)
+    }
+
     // Track changes to 'more' element's width
     const moreObserver  = new ResizeObserver((el) => {
         const MIN_WIDTH = 52;
@@ -50,18 +54,36 @@ export default function mobileMenu() {
         const firstHiddenOption = document.querySelector(".menu-option.hidden");
         
         if (el[0].contentRect.width < MIN_WIDTH) {
-            const clone = lastVisibleMenuOption.cloneNode()
-            appendOptionToDropDownContainer(clone);
             lastVisibleMenuOption.classList.add('hidden');
-        
+            console.log(lastVisibleMenuOption);
+
+            const clone = lastVisibleMenuOption.cloneNode(true)
+            console.log(clone);
+            console.log(typeof clone);
+            clone.classList.remove('hidden');
+            appendOptionToDropDownContainer(clone);
         } else if (el[0].contentRect.width > MAX_WIDTH) {
             firstHiddenOption.classList.remove('hidden');
+            removeLastOptionToDropDownContainer();
         }
     })
     moreObserver.observe(getMoreElement());
 
+    function showElement(el) {
+        el.classList.remove('hidden');
+    }
+
+    function hideElement(el) {
+        el.classList.add('hidden');
+    }
     // Detect hover over the 'more' element.
-    getMoreElement().addEventListener('mouseover', (e) => {
-        console.log(e.target);
+    getMoreElement().addEventListener('mouseover', () => {
+        const moreElement = getMoreElement();
+        showElement(moreElement);
+    })
+
+    getMoreElement().addEventListener('mouseleave', () => {
+        const moreElement = getMoreElement();
+        hideElement(moreElement);
     })
 }

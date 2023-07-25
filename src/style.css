@@ -54,3 +54,7 @@ body {
     flex: 1;
     text-align: end;
 }
+
+.drop-down-container.hidden {
+    display: none;
+}
