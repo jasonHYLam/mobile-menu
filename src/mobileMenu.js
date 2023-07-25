@@ -49,17 +49,18 @@ export default function mobileMenu() {
         const MIN_WIDTH = 52;
         const MAX_WIDTH = 150;
 
-        const visibleMenuOptions = document.querySelectorAll(".menu-option:not(.hidden)");
+        const visibleMenuOptions = document.querySelectorAll(".menu-option:not(.hidden)"); // why is the selector for not hidden not working
         const lastVisibleMenuOption = visibleMenuOptions[visibleMenuOptions.length -1];
         const firstHiddenOption = document.querySelector(".menu-option.hidden");
+
+        console.log(lastVisibleMenuOption);
         
         if (el[0].contentRect.width < MIN_WIDTH) {
             lastVisibleMenuOption.classList.add('hidden');
-            console.log(lastVisibleMenuOption);
+            // console.log(lastVisibleMenuOption);
 
             const clone = lastVisibleMenuOption.cloneNode(true)
-            console.log(clone);
-            console.log(typeof clone);
+            // console.log(clone);
             clone.classList.remove('hidden');
             appendOptionToDropDownContainer(clone);
         } else if (el[0].contentRect.width > MAX_WIDTH) {
@@ -78,12 +79,10 @@ export default function mobileMenu() {
     }
     // Detect hover over the 'more' element.
     getMoreElement().addEventListener('mouseover', () => {
-        const moreElement = getMoreElement();
-        showElement(moreElement);
+        showElement(getDropDownContainer());
     })
 
     getMoreElement().addEventListener('mouseleave', () => {
-        const moreElement = getMoreElement();
-        hideElement(moreElement);
+        hideElement(getDropDownContainer());
     })
 }
