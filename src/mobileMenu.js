@@ -20,19 +20,12 @@ export default function mobileMenu() {
         createElement('div', 'Shop', menuOptionContainer, 'menu-option');
         createElement('div', 'Earth', menuOptionContainer, 'menu-option');
         createElement('div', 'Travel', menuOptionContainer, 'menu-option');
-        createElement('div', 'Capital', menuOptionContainer, 'menu-option', 'hidden');
+        createElement('div', 'Capital', menuOptionContainer, 'menu-option',);
         createElement('div', 'More', menuContainer, 'more');
     }
 
     createMenuContainer();
 
-
-    // if length reaches certain point
-    // if nodelist length changes
-
-    function getBody() {
-        return document.querySelector("body");
-    }
 
     function getMoreElement() {
         return document.querySelector(".more");
@@ -40,35 +33,17 @@ export default function mobileMenu() {
 
     const moreObserver  = new ResizeObserver((el) => {
         const MIN_WIDTH = 35;
-        const MAX_WIDTH = 200;
-        let visibleMenuOptions = document.querySelectorAll(".menu-option:not(.hidden)");
-        let lastVisibleMenuOption = visibleMenuOptions[visibleMenuOptions.length -1];
+        const MAX_WIDTH = 150;
 
-        let firstHiddenOption = document.querySelector(".menu-option.hidden");
-        console.log(lastVisibleMenuOption);
+        const visibleMenuOptions = document.querySelectorAll(".menu-option:not(.hidden)");
+        const lastVisibleMenuOption = visibleMenuOptions[visibleMenuOptions.length -1];
+        const firstHiddenOption = document.querySelector(".menu-option.hidden");
         
         if (el[0].contentRect.width < MIN_WIDTH) {
             lastVisibleMenuOption.classList.add('hidden');
-        } else if (el[0].contentRect.width > MAX_WIDTH) {
+        } else if (el[0].contentRect.width > MAX_WIDTH) { // TODO: make this work
             firstHiddenOption.classList.remove('hidden');
         }
     })
-
-    // moreObserver.observe(getMoreElement());
-    function onresize(el) {
-        let width = el[0].contentRect.width;
-        // console.log('width', width)
-
-        if (width < 700) {
-            // console.log('width', width)
-            // console.log('start growing');
-            moreObserver.observe(getMoreElement());
-
-        } else if (width >= 700) {
-            // console.log('width', width)
-            // console.log('stop growing');
-        }
-    }
-    const myObserver = new ResizeObserver(onresize);
-    myObserver.observe(getBody());
+    moreObserver.observe(getMoreElement());
 }
