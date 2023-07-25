@@ -22,7 +22,7 @@ export default function mobileMenu() {
         createElement('div', 'Travel', menuOptionContainer, 'menu-option');
         createElement('div', 'Capital', menuOptionContainer, 'menu-option',);
         const moreElement = createElement('div', 'More', menuContainer, 'more');
-        createElement('div', '', moreElement, 'drop-down-container')
+        createElement('div', '', moreElement, 'drop-down-container', 'hidden')
     }
 
     createMenuContainer();
@@ -42,7 +42,7 @@ export default function mobileMenu() {
 
     // Track changes to 'more' element's width
     const moreObserver  = new ResizeObserver((el) => {
-        const MIN_WIDTH = 35;
+        const MIN_WIDTH = 52;
         const MAX_WIDTH = 150;
 
         const visibleMenuOptions = document.querySelectorAll(".menu-option:not(.hidden)");
