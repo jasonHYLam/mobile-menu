@@ -20,7 +20,7 @@ export default function mobileMenu() {
         createElement('div', 'Shop', menuOptionContainer, 'menu-option');
         createElement('div', 'Earth', menuOptionContainer, 'menu-option');
         createElement('div', 'Travel', menuOptionContainer, 'menu-option');
-        createElement('div', 'Capital', menuOptionContainer, 'menu-option');
+        createElement('div', 'Capital', menuOptionContainer, 'menu-option', 'hidden');
         createElement('div', 'More', menuContainer, 'more');
     }
 
@@ -86,57 +86,39 @@ export default function mobileMenu() {
     }
 
     const moreObserver  = new ResizeObserver((el) => {
-        const minWidth = 80;
-        let lastMenuOption = document.querySelector(".menu-option"); // not sure if this works
-        let lastVisibleMenuOption = document.querySelector(".menu-option:not(.hidden):last-child"); // not sure if this works
-        lastVisibleMenuOption.classList.add('hidden');
-        console.log(el[0].contentRect.width);
+        const MINWIDTH = 35;
+        // let lastVisibleMenuOption = document.querySelector(".menu-option:not(.hidden):last-child");
+        let lastVisibleMenuOption = document.querySelector(".menu-option:not(.hidden)");
+        console.log('this happens all the time huh');
         console.log(lastVisibleMenuOption);
+        
+        if (el[0].contentRect.width < MINWIDTH) {
+            console.log('ha im growing mad')
+            lastVisibleMenuOption.classList.add('hidden');
+            // lastVisibleMenuOption = document.querySelector(".menu-option:not(.hidden):last-child");
+            // lastVisibleMenuOption = document.querySelector(".menu-option:not(.hidden)");
+            // console.log(lastVisibleMenuOption);
+        }
     })
 
     // moreObserver.observe(getMoreElement());
     function onresize(el) {
         let width = el[0].contentRect.width;
-        console.log('width', width)
+        // console.log('width', width)
 
         if (width < 700) {
-            console.log('width', width)
-            console.log('start growing');
+            // console.log('width', width)
+            // console.log('start growing');
             moreObserver.observe(getMoreElement());
 
         } else if (width >= 700) {
-            console.log('width', width)
-            console.log('stop growing');
+            // console.log('width', width)
+            // console.log('stop growing');
         }
-
-        // TODO; look at logic
-        // console.log('width', el[0].contentRect.width);
-        // if (width < (widthOfMenuOption * 0.5)) {
-        //     // get reference to last element of menu options, and remove it from this
-        //     console.log('too small');
-        //     addToRemovedArray(getLastMenuOption());
-        //     removeOptionClass(getLastMenuOption());
-        //     console.log(document.querySelector('.menu-option-container'));
-        //     console.log(document.querySelector('.container-for-removed'));
-
-        //     changeObserver(getLastMenuOption())
-        //     console.log(getLastMenuOption());
-
-        //     // lastMenuOption.classList.add('hidden');
-        // } else if (width >= widthOfMenuOption * 1.5 ) {
-        //     console.log('too large');
-        //     // get reference to last element of removed array, and add it to previous
-        //     // lastMenuOption.classList.remove('hidden');
-        //     if (isRemovedArrayEmpty());
-        //     else {
-        //         console.log('this happens');
-        //         addOptionClass(getLastRemoved());
-        //         removeFromRemovedArray(getLastRemoved());
-        //     }
-
-        // }
     }
     const myObserver = new ResizeObserver(onresize);
     myObserver.observe(getBody());
+
+
 
 }
