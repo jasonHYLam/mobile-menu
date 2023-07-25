@@ -53,15 +53,12 @@ export default function mobileMenu() {
         const lastVisibleMenuOption = visibleMenuOptions[visibleMenuOptions.length -1];
         const firstHiddenOption = document.querySelector(".menu-option.hidden");
 
-        console.log(lastVisibleMenuOption);
+        console.log(visibleMenuOptions);
+        // console.log(lastVisibleMenuOption);
         
         if (el[0].contentRect.width < MIN_WIDTH) {
             lastVisibleMenuOption.classList.add('hidden');
-            // console.log(lastVisibleMenuOption);
-
             const clone = lastVisibleMenuOption.cloneNode(true)
-            // console.log(clone);
-            clone.classList.remove('hidden');
             appendOptionToDropDownContainer(clone);
         } else if (el[0].contentRect.width > MAX_WIDTH) {
             firstHiddenOption.classList.remove('hidden');
@@ -74,15 +71,31 @@ export default function mobileMenu() {
         el.classList.remove('hidden');
     }
 
+    function showChildNodes(el) {
+        const children = el.children;
+        for (const child of children) {
+            showElement(child)
+        }
+    }
+
+    function hideChildNodes(el) {
+        const children = el.children;
+        for (const child of children) {
+            hideElement(child)
+        }
+    }
+
     function hideElement(el) {
         el.classList.add('hidden');
     }
     // Detect hover over the 'more' element.
     getMoreElement().addEventListener('mouseover', () => {
         showElement(getDropDownContainer());
+        showChildNodes(getDropDownContainer());
     })
 
     getMoreElement().addEventListener('mouseleave', () => {
         hideElement(getDropDownContainer());
+        hideChildNodes(getDropDownContainer());
     })
 }
