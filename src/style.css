@@ -5,7 +5,7 @@ body {
 }
 .container {
     display: flex;
-    border: solid black 1px;
+    /* border: solid black 1px; */
     width: min(750px, 100%);
 }
 
@@ -22,6 +22,8 @@ body {
 .more {
     flex: 1;
     text-align: right;
+    border: solid red 1px;
+    position: relative;
 
 }
 
@@ -34,27 +36,13 @@ body {
     display: none;
 }
 
-/* testing  */
-#parent {
-    display: flex;
-    border: solid black 1px;
-    width: min(600px, 100%);
-}
-
-#container {
-    display: flex;
-    border: solid red 1px;
-}
-
-.little {
-    padding: 10px 25px 10px;
-}
-
-.expand {
-    flex: 1;
-    text-align: end;
-}
-
 .drop-down-container.hidden {
     display: none;
+}
+
+.drop-down-container {
+    position: absolute;
+    border: solid red 1px;
+    left: auto;
+    /* top: 20px; */
 }

@@ -21,8 +21,9 @@ export default function mobileMenu() {
         createElement('div', 'Earth', menuOptionContainer, 'menu-option');
         createElement('div', 'Travel', menuOptionContainer, 'menu-option');
         createElement('div', 'Capital', menuOptionContainer, 'menu-option',);
+        const moreElementContainer = createElement('div', '', menuContainer, 'moreElementContainer');
         const moreElement = createElement('div', 'More', menuContainer, 'more');
-        createElement('div', '', moreElement, 'drop-down-container', 'hidden')
+        const dropDownContainer = createElement('div', '', moreElement, 'drop-down-container', 'hidden')
     }
 
     createMenuContainer();
@@ -52,9 +53,6 @@ export default function mobileMenu() {
         const visibleMenuOptions = document.querySelectorAll(".menu-option:not(.hidden)"); // why is the selector for not hidden not working
         const lastVisibleMenuOption = visibleMenuOptions[visibleMenuOptions.length -1];
         const firstHiddenOption = document.querySelector(".menu-option.hidden");
-
-        console.log(visibleMenuOptions);
-        // console.log(lastVisibleMenuOption);
         
         if (el[0].contentRect.width < MIN_WIDTH) {
             lastVisibleMenuOption.classList.add('hidden');
@@ -78,6 +76,10 @@ export default function mobileMenu() {
         }
     }
 
+    function hideElement(el) {
+        el.classList.add('hidden');
+    }
+
     function hideChildNodes(el) {
         const children = el.children;
         for (const child of children) {
@@ -85,9 +87,6 @@ export default function mobileMenu() {
         }
     }
 
-    function hideElement(el) {
-        el.classList.add('hidden');
-    }
     // Detect hover over the 'more' element.
     getMoreElement().addEventListener('mouseover', () => {
         showElement(getDropDownContainer());
