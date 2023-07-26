@@ -2,10 +2,10 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* margin: 0; */
 }
 .container {
     display: flex;
-    /* border: solid black 1px; */
     width: min(750px, 100%);
 }
 
@@ -19,23 +19,22 @@ body {
     padding: 10px 25px 10px;
 }
 
+.menu-option {
+    text-align: center;
+}
+
 .moreElementContainer {
     flex: 1;
+    position: relative;
+    border: solid red 1px;
 
 }
 
 .more {
     flex: 1;
     text-align: right;
-    border: solid red 1px;
-    position: relative;
 
 }
-
-.menu-option {
-    /* flex: 1; */
-}
-
 
 .menu-option.hidden {
     display: none;
@@ -48,6 +47,6 @@ body {
 .drop-down-container {
     position: absolute;
     border: solid red 1px;
-    right: 0;
-    /* top: 20px; */
+    /* right: 0; */
+    width: 100%;
 }

@@ -35,6 +35,10 @@ export default function mobileMenu() {
         return document.querySelector(".more");
     }
 
+    function getMoreElementContainer() {
+        return document.querySelector(".moreElementContainer");
+    }
+
     function getDropDownContainer() {
         return document.querySelector(".drop-down-container");
     }
@@ -90,12 +94,13 @@ export default function mobileMenu() {
     }
 
     // Detect hover over the 'more' element.
-    getMoreElement().addEventListener('mouseover', () => {
+    // getMoreElement().addEventListener('mouseover', () => {// probably this needs the more elment container
+    getMoreElementContainer().addEventListener('mouseover', () => {// probably this needs the more elment container
         showElement(getDropDownContainer());
         showChildNodes(getDropDownContainer());
     })
 
-    getMoreElement().addEventListener('mouseleave', () => {
+    getMoreElementContainer().addEventListener('mouseleave', () => { // probably this needs the more element container
         hideElement(getDropDownContainer());
         hideChildNodes(getDropDownContainer());
     })
