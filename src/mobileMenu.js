@@ -22,8 +22,10 @@ export default function mobileMenu() {
         createElement('div', 'Travel', menuOptionContainer, 'menu-option');
         createElement('div', 'Capital', menuOptionContainer, 'menu-option',);
         const moreElementContainer = createElement('div', '', menuContainer, 'moreElementContainer');
-        const moreElement = createElement('div', 'More', menuContainer, 'more');
-        const dropDownContainer = createElement('div', '', moreElement, 'drop-down-container', 'hidden')
+        // const moreElement = createElement('div', 'More', menuContainer, 'more');
+        const moreElement = createElement('div', 'More', moreElementContainer, 'more');
+        // const dropDownContainer = createElement('div', '', moreElement, 'drop-down-container', 'hidden')
+        const dropDownContainer = createElement('div', '', moreElementContainer, 'drop-down-container', 'hidden')
     }
 
     createMenuContainer();
